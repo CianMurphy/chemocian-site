@@ -3,78 +3,181 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>ChemoCian — Privacy Policy</title>
+<title>OncologySCE Privacy Policy</title>
 <style>
   :root { color-scheme: light dark; }
   body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
          max-width: 720px; margin: 0 auto; padding: 2rem 1.25rem; line-height: 1.6; }
   h1 { color: #0a8f8f; }
   h2 { margin-top: 1.8rem; }
+  h3 { margin-top: 1.3rem; font-size: 1.05rem; }
   a { color: #0a8f8f; }
+  ul { padding-left: 1.3rem; }
+  li { margin: 0.25rem 0; }
   .muted { color: #888; font-size: 0.9rem; }
 </style>
 </head>
 <body>
   <h1>Privacy Policy</h1>
-  <p class="muted">ChemoCian · Last updated 27 June 2026</p>
+  <p class="muted">OncologySCE · Last updated 30 September 2026</p>
 
-  <p>ChemoCian ("the app") is a study aid for the UK Medical Oncology SCE,
-     developed by Cian Murphy. This policy explains what data the app does and
-     does not handle. In short: <strong>the app has no user accounts, no
-     analytics, and no advertising. The only data that ever leaves your device
-     is content you choose to send us</strong> — an optional problem report or a
-     feedback email.</p>
+  <p>OncologySCE ("the app") is a study aid for the UK Medical Oncology SCE. This policy explains what data the app
+     handles, where it goes and why. In short: <strong>the app has no user accounts, no advertising and no
+     third party analytics or tracking SDKs.</strong> Your progress syncs to your own iCloud. A small amount of
+     data reaches the developer: community answer statistics that do not name you, problem reports and emails you choose
+     to send, the purchase check that unlocks the question bank, and, only if you opt in, research data.</p>
 
-  <h2>Data we collect</h2>
-  <p>The app has no sign-in, no analytics SDKs, and no advertising. We do not
-     collect, store, or transmit any personal information about you in the normal
-     course of using the app. The two exceptions, both initiated by you, are the
-     "Report a problem" feature and the "Submit feedback" email link, described
-     below.</p>
+  <h2>Who is responsible</h2>
+  <p>The data controller is Cian Murphy, the developer of OncologySCE, based in the United Kingdom. Contact:
+     <a href="mailto:oncologysce@proton.me">oncologysce@proton.me</a>.</p>
+
+  <h2>Your progress and history (your iCloud)</h2>
+  <p>Your quiz progress (questions answered, scores, flagged questions, review schedule and session
+     history) is stored on your device. If you are signed in to iCloud, it also syncs between your own
+     devices through Apple's iCloud (iCloud key-value storage and your <strong>private</strong> CloudKit
+     database). This copy lives in your iCloud account under Apple's
+     <a href="https://www.apple.com/legal/privacy/">privacy policy</a>. The developer cannot see or access
+     it. You can erase it with "Reset progress" in Settings, by deleting the app, or through your iCloud
+     storage settings.</p>
+
+  <h2>Community answer statistics</h2>
+  <p>After you answer a question, the app can show what percentage of other users chose each option. To
+     make this work, the first time you answer each question the app saves a small record to the app's
+     CloudKit <strong>public</strong> database (run by Apple). Each record holds the question's ID, the
+     option you chose, whether it was correct, and a random ID created by the app on your device (not your
+     name, email or Apple ID). CloudKit also notes which iCloud account created the record, using an
+     opaque identifier that Apple does not reveal as your name or Apple ID.</p>
+  <p>The app only ever displays these records as totals and percentages. Because the database is public
+     to the app, other copies of the app can read the individual records in order to count them, but those
+     records contain nothing that names you. The records are kept while the app runs this feature. They are
+     not used to build a profile of you. If you want your records removed, email us.</p>
 
   <h2>Reporting a problem</h2>
-  <p>If you tap "Report a problem" on a question, the app sends the note you type
-     together with that question's text to the developer using Apple's CloudKit
-     service. CloudKit associates the report with your iCloud account so we can
-     follow up on duplicates, but we do not see your name, email, or Apple ID
-     from it. We use these reports only to find and fix errors in the question
-     bank, and we ask you not to include any personal or patient information in
-     the note. Reporting is entirely optional — the app works fully without it.</p>
+  <p>If you tap "Report a problem" on a question, the app sends the note you type, the question's ID and
+     topic, and the app version to the developer using Apple's CloudKit public database. CloudKit associates
+     the report with your iCloud account so duplicates can be followed up, but we do not see your name,
+     email or Apple ID from it. We use reports only to find and fix errors in the question bank. Please do
+     not include personal or patient information in the note. Reporting is optional and the app works fully
+     without it.</p>
 
-  <h2>Data stored on your device</h2>
-  <p>Your quiz progress — questions answered, scores, flagged questions, and
-     session history — is stored <strong>only on your device</strong> (using
-     Apple's on-device storage). It is never uploaded to us or anyone else. You
-     can erase it at any time with "Reset progress" in Settings, or by deleting
-     the app.</p>
+  <h2>Unlocking the question bank (purchase check)</h2>
+  <p>The full question bank is downloaded from our server, a Cloudflare Worker, over an encrypted (HTTPS)
+     connection. Before it will send the bank, the app sends the Worker Apple's signed proof of purchase:
+     the AppTransaction (showing this Apple Account got the app) and, for subscribers, the signed
+     subscription transaction. The Worker checks Apple's signature and returns a short-lived access token,
+     which the app stores in your device's Keychain. These proofs contain Apple's transaction identifiers,
+     product and dates, but no name, email or Apple ID.</p>
+  <p>The Worker may log a transaction identifier briefly when a check fails, and it keeps a list of
+     refunded or revoked transaction identifiers so that a refunded purchase cannot keep unlocking the
+     bank. Apple also sends the Worker notices about subscription events (for example renewals and
+     refunds), which record the product, dates, price and transaction identifiers. We use this only to
+     run the subscription and prevent misuse. Payment itself is handled entirely by Apple.</p>
+
+  <h2 id="research">Research data (optional)</h2>
+  <p>You can choose to share your answers with the developer to help find out how scores in the app
+     relate to real SCE results, and to improve the questions. This is <strong>off unless you turn it
+     on</strong>. The app asks you when you first use it. If you close the question without
+     answering, it asks again on a later launch, no more than three times in all on each device. If you
+     share your answers, it may also ask you once, separately, whether you want to add your exam
+     result. Saying no changes nothing about how the app works for you.</p>
+
+  <h3>What is collected, if you opt in</h3>
+  <ul>
+    <li>For each answer: the question's ID, the option you chose (or that you left it blank in a mock),
+        the answer that was keyed correct at the time, how long you took, and whether you marked it as
+        unsure.</li>
+    <li>For each session: when it started and which topic or mode it covered.</li>
+    <li>Your past quiz history already on your device (or synced to it from your other devices), which is
+        uploaded once when you opt in, then new sessions as you complete them.</li>
+    <li>The app version.</li>
+    <li>Only if you separately agree: your SCE result for a sitting (for example September 2026), given as
+        pass, fail, did not sit or prefer not to say, and optionally your scaled score.</li>
+    <li>A record of each consent choice you make, with its date, so we can show what you agreed to.</li>
+  </ul>
+
+  <h3>What is not collected</h3>
+  <p>Your name, email address, Apple ID, phone number, device identifiers, device model or location. Your
+     IP address is not stored with research data (Cloudflare necessarily sees it to deliver any internet
+     request, as described below).</p>
+
+  <h3>Your research ID</h3>
+  <p>When you opt in, the app creates a random research ID and a secret key. Your data is stored under
+     that ID, not under your name. The ID and key are kept in your iCloud key-value storage so your own
+     devices share one ID. You can see your research ID in Settings, Research sharing. Because answers and
+     an exam result together could in principle relate to a real person, we treat this data as
+     pseudonymous personal data and protect it accordingly.</p>
+
+  <h3>Why, and on what legal basis</h3>
+  <p>Purposes: to evaluate how performance in the app relates to SCE results, and to improve question
+     quality (for example spotting questions that are unclear or wrongly keyed). The lawful basis is your
+     <strong>consent</strong> (UK GDPR Article 6(1)(a)). Sharing answers and sharing an exam result are
+     separate choices. You can withdraw either at any time in Settings, Research sharing, and withdrawing
+     has no effect on your use of the app. Withdrawal stops any further uploads straight away. It does not
+     affect processing that took place before you withdrew. After you withdraw, data you already shared is
+     not used in any new analysis, and it is deleted when you choose "Delete my shared data" or when the
+     retention period ends, whichever comes first.</p>
+
+  <h3>Who can see it</h3>
+  <p>Only the developer. It is not sold, not shared with other organisations, not used for advertising,
+     and not used to make any automated decision about you. Any findings that are published or presented
+     will be aggregate only (for example group averages over at least five people), and no individual will
+     be identifiable from them.</p>
+
+  <h3>Where it is stored</h3>
+  <p>Research data is stored in a Cloudflare D1 database set to Cloudflare's EU jurisdiction, so it is
+     stored in the European Union. Cloudflare acts as our processor under its
+     <a href="https://www.cloudflare.com/cloudflare-customer-dpa/">Data Processing Addendum</a>. Cloudflare
+     is a US company and its global network carries the requests, so some processing may take place outside
+     the UK and EU. Those transfers are covered by the safeguards in Cloudflare's Data Processing Addendum
+     (Standard Contractual Clauses with the UK Addendum) and Cloudflare's certification under the UK
+     Extension to the EU US Data Privacy Framework.</p>
+
+  <h3>How long it is kept</h3>
+  <p>Research data is deleted automatically 2 years after your research ID was last used (for example your
+     last upload), or immediately when you delete it.</p>
+
+  <h3>Your rights</h3>
+  <ul>
+    <li><strong>Access and portability:</strong> Settings, Research sharing, "Download my data" gives you a
+        copy of everything held under your research ID, in a machine readable file.</li>
+    <li><strong>Erasure:</strong> "Delete my shared data" in the same screen deletes it from the server
+        straight away.</li>
+    <li><strong>Rectification, restriction and objection:</strong> email
+        <a href="mailto:oncologysce@proton.me">oncologysce@proton.me</a> with your research ID (shown in
+        the app). We cannot find your data from your name or email, because we do not hold them.</li>
+    <li><strong>Complaints:</strong> you can complain to the UK Information Commissioner's Office at
+        <a href="https://ico.org.uk/make-a-complaint/">ico.org.uk</a>. We would appreciate the chance to
+        deal with your concern first.</li>
+  </ul>
+  <p>We reply to requests within one month.</p>
 
   <h2>Network use</h2>
-  <p>The app downloads a static question bank over an encrypted (HTTPS)
-     connection from Cloudflare R2 storage so that questions can be updated
-     without an app update. This is a one-way download of a public file; the app
-     does not send any personal data with the request. As with any internet
-     request, Cloudflare may process standard technical information such as your
-     IP address to deliver the file. See
-     <a href="https://www.cloudflare.com/privacypolicy/">Cloudflare's privacy policy</a>.</p>
+  <p>Requests to our Worker and question images are delivered by Cloudflare. As with any internet request,
+     Cloudflare processes standard technical information such as your IP address to deliver it and to
+     protect the service, and may keep short-lived technical logs. See
+     <a href="https://www.cloudflare.com/privacypolicy/">Cloudflare's privacy policy</a>. Our own code does
+     not store your IP address.</p>
+  <p>The optional ChatGPT panel opens OpenAI's website inside the app. Anything you do there, including
+     signing in, is between you and OpenAI under
+     <a href="https://openai.com/policies/privacy-policy/">OpenAI's privacy policy</a>. The app does not send
+     your progress or research data to OpenAI.</p>
 
   <h2>Contacting us</h2>
-  <p>The app offers an optional "Submit feedback" link that opens your email
-     app. If you choose to email us, we will see your email address and whatever
-     you write, and use it only to respond to you.</p>
+  <p>The app offers an optional "Submit feedback" link that opens your email app. If you choose to email us,
+     we will see your email address and whatever you write, and use it only to respond to you.</p>
 
   <h2>Children</h2>
-  <p>The app is intended for medical professionals and trainees and is not
-     directed at children.</p>
+  <p>The app is intended for medical professionals and trainees and is not directed at children.</p>
 
   <h2>Changes</h2>
-  <p>If this policy changes, the updated version will be posted on this page with
-     a new date.</p>
+  <p>If this policy changes, the updated version will be posted on this page with a new date. If a change
+     affects research data, the app will ask for your consent again before any new use.</p>
 
   <h2>Contact</h2>
-  <p><a href="mailto:cian.colm.murphy@gmail.com">cian.colm.murphy@gmail.com</a></p>
+  <p><a href="mailto:oncologysce@proton.me">oncologysce@proton.me</a></p>
 
   <p class="muted" style="margin-top:2rem">
-    ChemoCian is an educational study aid only. It does not provide medical
+    OncologySCE is an educational study aid only. It does not provide medical
     advice and must not be used for clinical decision-making or patient care.
   </p>
 </body>
