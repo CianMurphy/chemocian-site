@@ -25,7 +25,8 @@
      handles, where it goes and why. In short: <strong>the app has no user accounts, no advertising and no
      third party analytics or tracking SDKs.</strong> Your progress syncs to your own iCloud. A small amount of
      data reaches the developer: community answer statistics that do not name you, problem reports and emails you choose
-     to send, the purchase check that unlocks the question bank, and, only if you opt in, research data.</p>
+     to send, the purchase check that unlocks the question bank, and, only if you opt in, research data held under
+     a random code that we cannot connect to you.</p>
 
   <h2>Who is responsible</h2>
   <p>The data controller is Cian Murphy, the developer of OncologySCE, based in the United Kingdom. Contact:
@@ -51,6 +52,10 @@
      to the app, other copies of the app can read the individual records in order to count them, but those
      records contain nothing that names you. The records are kept while the app runs this feature. They are
      not used to build a profile of you. If you want your records removed, email us.</p>
+  <p>If you choose to share research answers (below), the app stops saving these records while answer
+     sharing is on, and before it sends any answer for research it deletes the records your iCloud account
+     has already saved for that question. This stops the two sets of data from being matched to each other.
+     While you share, your answers no longer count towards the percentages, but you can still see them.</p>
 
   <h2>Reporting a problem</h2>
   <p>If you tap "Report a problem" on a question, the app sends the note you type, the question's ID and
@@ -74,82 +79,87 @@
      run the subscription and prevent misuse. Payment itself is handled entirely by Apple.</p>
 
   <h2 id="research">Research data (optional)</h2>
-  <p>You can choose to share your answers with the developer to help find out how scores in the app
-     relate to real SCE results, and to improve the questions. This is <strong>off unless you turn it
-     on</strong>. The app asks you when you first use it. If you close the question without
-     answering, it asks again on a later launch, no more than three times in all on each device. If you
-     share your answers, it may also ask you once, separately, whether you want to add your exam
-     result. Saying no changes nothing about how the app works for you.</p>
+  <p>You can choose to share your answers to help find out how scores in the app relate to real SCE
+     results, and to improve the questions. This is <strong>off unless you turn it on</strong>. The app
+     asks you when you first use it. If you close the question without answering, it asks again on a
+     later launch, no more than three times in all on each device. Sharing your exam result is a
+     separate choice, off unless you turn it on. Saying no changes nothing about how the app works for
+     you.</p>
 
-  <h3>What is collected, if you opt in</h3>
+  <h3>What is shared, if you opt in</h3>
   <ul>
-    <li>For each answer: the question's ID, the option you chose (or that you left it blank in a mock),
+    <li>For each answer: the question's ID, the option you picked (or that you left it blank in a mock),
         the answer that was keyed correct at the time, how long you took, and whether you marked it as
         unsure.</li>
-    <li>For each session: when it started and which topic or mode it covered.</li>
+    <li>For each session: the week it took place (the Monday of that week, not the day or time), its
+        order among your sessions, and which topic or mode it covered.</li>
     <li>Your past quiz history already on your device (or synced to it from your other devices), which is
-        uploaded once when you opt in, then new sessions as you complete them.</li>
-    <li>The app version.</li>
+        sent once when you opt in, then new sessions as you complete them.</li>
     <li>Only if you separately agree: your SCE result for a sitting (for example September 2026), given as
-        pass, fail, did not sit or prefer not to say, and optionally your scaled score.</li>
-    <li>A record of each consent choice you make, with its date, so we can show what you agreed to.</li>
+        pass, fail, did not sit or prefer not to say, and optionally a score band (for example 400 to
+        424). The app never asks for your exact score.</li>
+    <li>Whether each of the two sharing choices is on or off.</li>
   </ul>
 
-  <h3>What is not collected</h3>
-  <p>Your name, email address, Apple ID, phone number, device identifiers, device model or location. Your
-     IP address is not stored with research data (Cloudflare necessarily sees it to deliver any internet
-     request, as described below).</p>
+  <h3>What is not shared or stored</h3>
+  <p>Your name, email address, Apple ID, phone number, device identifiers, device model, app version,
+     location, or the exact date and time of any session. Our code does not read or store your IP
+     address. Cloudflare, which runs the service, necessarily sees your IP address in transit to deliver
+     the request, as it does for any internet request (see Network use below).</p>
 
-  <h3>Your research ID</h3>
-  <p>When you opt in, the app creates a random research ID and a secret key. Your data is stored under
-     that ID, not under your name. The ID and key are kept in your iCloud key-value storage so your own
-     devices share one ID. You can see your research ID in Settings, Research sharing. Because answers and
-     an exam result together could in principle relate to a real person, we treat this data as
-     pseudonymous personal data and protect it accordingly.</p>
+  <h3>A random code, not you</h3>
+  <p>When you opt in, the app makes a random code and a secret key. Your answers are stored under that
+     code. The code and key stay on your devices and in your own iCloud key-value storage, so your
+     devices share one code. The code is never shown to you, we never see it next to anything that identifies
+     you, and the app never puts it in an email, a file or anything you can share. The secret key only stops anyone else from sending
+     data under your code.</p>
+  <p>Research data is kept by a separate small service, apart from the one that checks purchases and
+     delivers the question bank, with request logging turned off. We never combine research data with
+     emails, problem reports, purchase checks, community answer statistics or anything else we hold. We
+     will not try to find out who anyone is.</p>
+  <p>Because of all this we have no way to link research data to you, so <strong>we do not consider it
+     personal data</strong>. That rests partly on the design above and partly on rules we keep ourselves:
+     we never combine research data with anything else we hold, we only look at it as group summaries, and
+     we never try to identify anyone. We treat it with care anyway.</p>
 
-  <h3>Why, and on what legal basis</h3>
+  <h3>What this means for you: we cannot find your answers later</h3>
+  <p>Because we cannot tell which data is yours, <strong>we cannot find, show, correct or delete your
+     shared answers</strong> once they have been sent, even if you ask us. This follows from not being
+     able to identify you (the principle in UK GDPR Article 11). Please decide with that in mind. Your
+     own progress in the app is unaffected and stays under your control as described above.</p>
+
+  <h3>Stopping</h3>
+  <p>You can stop sharing at any time in Settings, Research sharing. Turn off a choice and nothing more
+     of that kind is sent; turn off both and nothing more is sent at all. Once both are off, data already sent stays under the random code, is left out of any
+     later analysis, and is deleted when the retention period ends. Stopping has no effect on your use
+     of the app.</p>
+
+  <h3>Why, and on what basis</h3>
   <p>Purposes: to evaluate how performance in the app relates to SCE results, and to improve question
-     quality (for example spotting questions that are unclear or wrongly keyed). The lawful basis is your
-     <strong>consent</strong> (UK GDPR Article 6(1)(a)). Sharing answers and sharing an exam result are
-     separate choices. You can withdraw either at any time in Settings, Research sharing, and withdrawing
-     has no effect on your use of the app. Withdrawal stops any further uploads straight away. It does not
-     affect processing that took place before you withdrew. After you withdraw, data you already shared is
-     not used in any new analysis, and it is deleted when you choose "Delete my shared data" or when the
-     retention period ends, whichever comes first.</p>
+     quality (for example spotting questions that are unclear or wrongly keyed). We only collect it
+     because you choose to share it, and you can stop at any time.</p>
 
-  <h3>Who can see it</h3>
+  <h3>Who can see it, and what is published</h3>
   <p>Only the developer. It is not sold, not shared with other organisations, not used for advertising,
-     and not used to make any automated decision about you. Any findings that are published or presented
-     will be aggregate only (for example group averages over at least five people), and no individual will
-     be identifiable from them.</p>
+     and not used to make any decision about anyone. Any findings that are published or presented are
+     group summaries only, and every group shown has at least five people in it.</p>
 
   <h3>Where it is stored</h3>
   <p>Research data is stored in a Cloudflare D1 database set to Cloudflare's EU jurisdiction, so it is
-     stored in the European Union. Cloudflare acts as our processor under its
-     <a href="https://www.cloudflare.com/cloudflare-customer-dpa/">Data Processing Addendum</a>. Cloudflare
-     is a US company and its global network carries the requests, so some processing may take place outside
-     the UK and EU. Those transfers are covered by the safeguards in Cloudflare's Data Processing Addendum
-     (Standard Contractual Clauses with the UK Addendum) and Cloudflare's certification under the UK
-     Extension to the EU US Data Privacy Framework.</p>
+     stored in the European Union. Cloudflare provides the service under its
+     <a href="https://www.cloudflare.com/cloudflare-customer-dpa/">Data Processing Addendum</a>.
+     Cloudflare is a US company and its global network carries the requests, so some handling may take
+     place outside the UK and EU, covered by the safeguards in that addendum.</p>
 
   <h3>How long it is kept</h3>
-  <p>Research data is deleted automatically 2 years after your research ID was last used (for example your
-     last upload), or immediately when you delete it.</p>
+  <p>Research data is deleted automatically 2 years after the last upload under its code.</p>
 
-  <h3>Your rights</h3>
-  <ul>
-    <li><strong>Access and portability:</strong> Settings, Research sharing, "Download my data" gives you a
-        copy of everything held under your research ID, in a machine readable file.</li>
-    <li><strong>Erasure:</strong> "Delete my shared data" in the same screen deletes it from the server
-        straight away.</li>
-    <li><strong>Rectification, restriction and objection:</strong> email
-        <a href="mailto:oncologysce@proton.me">oncologysce@proton.me</a> with your research ID (shown in
-        the app). We cannot find your data from your name or email, because we do not hold them.</li>
-    <li><strong>Complaints:</strong> you can complain to the UK Information Commissioner's Office at
-        <a href="https://ico.org.uk/make-a-complaint/">ico.org.uk</a>. We would appreciate the chance to
-        deal with your concern first.</li>
-  </ul>
-  <p>We reply to requests within one month.</p>
+  <h3>Questions and complaints</h3>
+  <p>Email <a href="mailto:oncologysce@proton.me">oncologysce@proton.me</a> with any question about
+     research sharing. We will explain how it works, but we cannot look up any individual's data. You can
+     also complain to the UK Information Commissioner's Office at
+     <a href="https://ico.org.uk/make-a-complaint/">ico.org.uk</a>. We would appreciate the chance to deal
+     with your concern first.</p>
 
   <h2>Network use</h2>
   <p>Requests to our Worker and question images are delivered by Cloudflare. As with any internet request,
@@ -171,7 +181,7 @@
 
   <h2>Changes</h2>
   <p>If this policy changes, the updated version will be posted on this page with a new date. If a change
-     affects research data, the app will ask for your consent again before any new use.</p>
+     affects research sharing, the app will ask you again before anything more is sent.</p>
 
   <h2>Contact</h2>
   <p><a href="mailto:oncologysce@proton.me">oncologysce@proton.me</a></p>
