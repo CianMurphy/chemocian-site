@@ -19,7 +19,7 @@
 </head>
 <body>
   <h1>Privacy Policy</h1>
-  <p class="muted">OncologySCE · Last updated 30 September 2026</p>
+  <p class="muted">OncologySCE · Last updated 19 October 2026</p>
 
   <p>OncologySCE ("the app") is a study aid for the UK Medical Oncology SCE. This policy explains what data the app
      handles, where it goes and why. In short: <strong>the app has no user accounts, no advertising and no
@@ -58,25 +58,47 @@
      While you share, your answers no longer count towards the percentages, but you can still see them.</p>
 
   <h2>Reporting a problem</h2>
-  <p>If you tap "Report a problem" on a question, the app sends the note you type, the question's ID and
-     topic, and the app version to the developer using Apple's CloudKit public database. CloudKit associates
-     the report with your iCloud account so duplicates can be followed up, but we do not see your name,
-     email or Apple ID from it. We use reports only to find and fix errors in the question bank. Please do
-     not include personal or patient information in the note. Reporting is optional and the app works fully
-     without it.</p>
+  <p>If you tap "Report a problem" on a question, the security update sends your note, the question's ID
+     and app version to a private database operated through Cloudflare. It also records the date and a
+     purchase-derived pseudonym so access can be verified. Reports do not automatically copy the question's
+     stem, options or explanation. We use reports to find and fix errors in the question bank and retain
+     them for up to 365 days. Please do not include personal or patient information in your note.
+     Reporting is optional. Older reports have been removed from the shared CloudKit database after
+     private copies were retained for question-bank review.</p>
 
   <h2>Unlocking the question bank (purchase check)</h2>
-  <p>The full question bank is downloaded from our server, a Cloudflare Worker, over an encrypted (HTTPS)
-     connection. Before it will send the bank, the app sends the Worker Apple's signed proof of purchase:
+  <p>Questions are downloaded from our server, a Cloudflare Worker, over an encrypted (HTTPS)
+     connection. Before it will send paid content, the app sends the Worker Apple's signed proof of purchase:
      the AppTransaction (showing this Apple Account got the app) and, for subscribers, the signed
      subscription transaction. The Worker checks Apple's signature and returns a short-lived access token,
      which the app stores in your device's Keychain. These proofs contain Apple's transaction identifiers,
      product and dates, but no name, email or Apple ID.</p>
-  <p>The Worker may log a transaction identifier briefly when a check fails, and it keeps a list of
+  <p>The Worker keeps a list of
      refunded or revoked transaction identifiers so that a refunded purchase cannot keep unlocking the
      bank. Apple also sends the Worker notices about subscription events (for example renewals and
      refunds), which record the product, dates, price and transaction identifiers. We use this only to
      run the subscription and prevent misuse. Payment itself is handled entirely by Apple.</p>
+
+  <h2>Device verification and content protection</h2>
+  <p>The security update uses Apple's App Attest on supported iPhones and iPads. It sends cryptographic
+     proof that the app and device are genuine and signs each content request with a device key. On
+     Android, Google Play Integrity provides app, licensing and device-integrity verdicts; purchases are
+     checked through Google using a service with a managed identity. Google and Apple process these checks
+     under their own privacy policies. Raw purchase proofs and access tokens are not included in our
+     routine logs.</p>
+  <p>Our private security database stores a device public key and identifier, platform, registration and
+     last-access dates, replay counters, and a keyed purchase pseudonym. These enforce device limits,
+     download limits and revocation. They are used for security, not advertising, and are separate from
+     optional research identifiers. Content arrives in packs of up to 250 questions with a maximum
+     24-hour offline lease. The app encrypts its paid-content cache using a device-only key and excludes
+     it from backups. Answer choices, scores and timing remain in history; paid question text is resolved
+     from the current pack.</p>
+  <p>Each delivered pack has a pseudonymous content reference, also visible on its questions. We retain
+     delivery references for 90 days to investigate unauthorised redistribution. Short-lived request
+     challenges expire after two minutes. Device and account restrictions remain while needed to enforce
+     access and investigate misuse. Operational security events record denials, rate limits and pack
+     delivery without question text or raw purchase identifiers. Cloudflare also processes connection
+     metadata, including IP addresses, to operate and protect the service.</p>
 
   <h2 id="research">Research data (optional)</h2>
   <p>You can choose to share your answers to help find out how scores in the app relate to real SCE
